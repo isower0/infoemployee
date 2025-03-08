@@ -1,0 +1,53 @@
+<button onclick="window.history.back()">🔙 กลับ</button>
+<h1>Employee List</h1>
+<br>
+<form method="GET" action="{% url 'employee_list' %}">
+    <input type="text" name="search_emp" value="{{ query }}" placeholder="ค้นหาชื่อพนักงาน">
+    <button type="submit">🔍 ค้นหา</button>
+</form>
+<a href="{% url 'add_employee' %}">Add Employee</a><br>
+<br>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ชื่อ</th>
+            <th>นามสกุล</th>
+            <th>อีเมล</th>
+            <th>เบอร์โทรติดต่อ</th>
+            <th>แผนก</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in page_obj  %}
+        <tr>
+            <td>{{ employee.first_name }}</td>
+            <td>{{ employee.last_name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.phone_number }}</td>
+            <td>{{ employee.department }}</td>
+            <td>
+                <a href="{% url 'employee_detail' employee.id %}">🔍 ดูรายละเอียด</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No employees found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Pagination Controls -->
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?q={{ query }}&page=1">หน้าแรก</a>
+        <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">⏪ ก่อนหน้า</a>
+    {% endif %}
+    
+    <span>หน้าที่ {{ page_obj.number }} จาก {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">ถัดไป ⏩</a>
+        <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}">หน้าสุดท้าย</a>
+    {% endif %}
+</div>

@@ -1,0 +1,8 @@
+<!-- accounts/templates/accounts/add_employee.html -->
+<button onclick="window.history.back()">🔙 กลับ</button>
+<h1>Add New Employee</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- แสดงฟอร์มทั้งหมด -->
+    <button type="submit">Save Employee</button>
+</form>

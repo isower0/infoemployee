@@ -1,0 +1,3 @@
+python manage.py makemigrations สร้างไฟล์ Migration สำหรับการเปลี่ยนแปลง Model
+python manage.py migrate อัปเดตฐานข้อมูลให้ตรงกับ Model
+python manage.py runserver รัน

@@ -1,0 +1,15 @@
+{% load static %}
+<button onclick="window.history.back()">🔙 กลับ</button><br>
+<h2>ข้อมูลพนักงาน</h2>
+{% if employee.image_base64 %}
+    <img src="data:image/png;base64,{{ employee.image_base64 }}" height="150" width="200">
+{% else %}
+<img src="{% static 'images/avatar.png' %}" height="150" width="200">
+{% endif %}
+<p><strong>ชื่อ:</strong> {{ employee.first_name }}</p>
+<p><strong>นามสกุล:</strong> {{ employee.last_name }}</p>
+<p><strong>แผนก:</strong> {{ employee.department }}</p>
+<p><strong>อีเมล:</strong> {{ employee.email }}</p>
+<p><strong>เบอร์โทรติดต่อ:</strong> {{ employee.phone_number }}</p>
+
+

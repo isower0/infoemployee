@@ -1,0 +1,10 @@
+{% if user.is_authenticated %}
+<h2>Welcome, {{ user.username }}</h2>
+<a href="{% url 'add_employee' %}">Add Employee</a><br>
+<a href="{% url 'employee_list' %}">View Employee</a>
+<br>
+<a href="{% url 'logout' %}">Logout</a>
+{% else %}
+<h2>Welcome Look Info Employee</h2>
+<p>You are not logged in. <a href="{% url 'login' %}">Login</a></p>
+{% endif %}
